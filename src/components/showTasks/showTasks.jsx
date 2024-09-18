@@ -1,21 +1,34 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 // import React from 'react'
 
-// eslint-disable-next-line react/prop-types
-const ShowTasks = ({task}) => {
 
-    console.log("This is the task", task);
-    
+const ShowTasks = ({task, onchecked, checkedTag, deleteTask}) => {
+
+  
+
   return (
     <li>
-        <div>
-            <input type="checkbox" name="eat" id="eat" />Eat
-        </div>
-        
-        <div className="flex gap-5">
-            <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg h-2 w-[31%]">Edit {task}</button>
-            <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg h-2 w-[31%]">Delete {task}</button>
-        </div>
+        {
+          task && (
+            <div className="text-white">
+              <input type="checkbox"
+              name="eat" id="eat"
+              className="mx-2 m-2"
+              onClick={() => onchecked()}
+              defaultChecked={checkedTag}
+              /> { task }
+            </div>
+          )
+        }
+
+        {
+          task && (
+            <div className="flex gap-5">
+              <button className="btn btn-xs sm:btn-sm h-2 w-[31%]">Edit {task}</button>
+              <button className="btn btn-xs sm:btn-sm h-2 w-[31%]" onClick={() => deleteTask()}>Delete {task}</button>
+            </div>
+          )
+        }
     </li>
   )
 }
