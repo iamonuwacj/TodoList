@@ -34,6 +34,7 @@ const AddTask = () => {
         setActiveTasks(() => [...activeTasks, ...[InpValue]])
 
         setInpValue("")
+        setToggleActive(true)
         setEdit(false)
 
     }
@@ -86,6 +87,8 @@ const AddTask = () => {
         setActiveTasks(activeTasks.filter(task => task !== taskTobeUpdated))
 
         setEdit(true)
+        console.log(updatedTask);
+        
     }
 
 
@@ -127,7 +130,7 @@ const AddTask = () => {
                     Completed Tasks
                 </button>
             </div>
-        <div className='border-2 p-4'>
+        <div className={toggleActive || toggleAll || toggleCompleted ? "border-2 p-4" : null}>
             
             {
                 toggleAll && (
@@ -144,14 +147,6 @@ const AddTask = () => {
             {
                 toggleCompleted && (
                     <h2 className='mb-6 text-3xl text-white'>{`${completedTasks.length} tasks completed`}</h2>
-                )
-            }
-            {
-                !toggleActive && !toggleCompleted && !toggleAll && (
-                    <div className='text-3xl mt-40 text-center mb-8'>
-                        <h2 className='mb-6'>Lets get started! <span className='size-24'>😆</span></h2>
-                        <p>Add a new task to begin</p>
-                    </div>
                 )
             }
             <ul>
@@ -195,6 +190,16 @@ const AddTask = () => {
                     )
                 }
             </ul>
+        </div>
+        <div className='flex flex-col'>
+                    {
+                        !toggleActive && !toggleCompleted && !toggleAll && (
+                            <div className='text-3xl mt-40 text-center mb-8'>
+                                <h2 className='mb-6'>Lets get started! <span className='size-24'>😆</span></h2>
+                                <p>Add a new task to begin</p>
+                            </div>
+                        )
+                    }
         </div>
     </div>
   )
