@@ -21,7 +21,7 @@ const AddTask = () => {
 
         if (allTasks.includes(InpValue)){
             setInpValue("")
-            alert("Task Already exists")
+            alert("Task Already Enntered")
             return false
         }
         setAllTasks(() => [...allTasks, ...[InpValue]])
@@ -87,7 +87,7 @@ const AddTask = () => {
     <div>
 
         <div className="flex mb-10 justify-between items-center">
-            <input type="text" className="input input-bordered w-full max-w-xs"
+            <input type="text" className="input input-bordered w-full max-w-xs bg-white text-black"
                 onChange={(e) => {setInpValue(e.target.value)}}
                 value={InpValue}
             />
@@ -115,7 +115,7 @@ const AddTask = () => {
                     Show Active Tasks
                 </button>
                 <button type='submit'
-                    className="btn btn-xs sm:btn-sm  h-2 w-[31%]"
+                    className="btn btn-xs sm:btn-sm  h-2 w-[31%] bg-success"
                     onClick={() => handleCompletedTasks()}
                     >
                     Show Completed Tasks
