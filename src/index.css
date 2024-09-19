@@ -10,4 +10,7 @@
 
 body {
     padding: calc(2 * 2%);
+    background-image: url("../public/guillaume-bleyer-GDoh9pYC_W4-unsplash.jpg");
+    height: 120vh;
+    /* overflow: hidden; */
 }

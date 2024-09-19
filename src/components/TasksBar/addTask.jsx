@@ -10,7 +10,7 @@ const AddTask = () => {
     const [toggleAll, setToggleAll] = useState(false)
     const [edit, setEdit] = useState(false)
     const [updatedTask, setUpdatedTask] = useState("")
-    const [toggleActive, setToggleActive] = useState(true)
+    const [toggleActive, setToggleActive] = useState(false)
     const [toggleCompleted, setToggleCompleted] = useState(false)
     
     const handleSubmit = (e) => {
@@ -22,6 +22,12 @@ const AddTask = () => {
         if (allTasks.includes(InpValue)){
             setInpValue("")
             alert("Task Already Enntered")
+            return false
+        }
+
+        if (allTasks.length === 7) {
+            alert("You have to complete the scheduled tasks to continue adding")
+            setInpValue("")
             return false
         }
         setAllTasks(() => [...allTasks, ...[InpValue]])
@@ -87,12 +93,12 @@ const AddTask = () => {
     <div>
 
         <div className="flex mb-10 justify-between items-center">
-            <input type="text" className="input input-bordered w-full max-w-xs bg-white text-black"
+            <input type="text" className="input input-bordered w-full max-w-xs  text-white"
                 onChange={(e) => {setInpValue(e.target.value)}}
                 value={InpValue}
             />
             <button type='submit'
-                className="btn btn-xs sm:btn-sm h-2 w-1/4"
+                className="btn btn-xs sm:btn-sm h-2 w-1/4 bg-emerald-800"
                 onClick={(e) => handleSubmit(e)}
                 >
                 {
@@ -103,19 +109,19 @@ const AddTask = () => {
 
             <div className="flex justify-between items-center gap-[2%] w-full mb-8">
                 <button type='submit'
-                    className="btn btn-xs sm:btn-sm  h-2 w-[31%]"
+                    className="btn btn-xs sm:btn-sm  h-2 w-[31%] bg-blue-950 text-white"
                     onClick={() => handleAllTasks()}
                     >
                     Show all Tasks
                 </button>
                 <button type='submit'
-                    className="btn btn-xs sm:btn-sm  h-2 w-[31%]"
+                    className="btn btn-xs sm:btn-sm  h-2 w-[31%] bg-amber-600 text-white"
                     onClick={() => handleActiveTasks()}
                     >
                     Show Active Tasks
                 </button>
                 <button type='submit'
-                    className="btn btn-xs sm:btn-sm  h-2 w-[31%] bg-success"
+                    className="btn btn-xs sm:btn-sm  h-2 w-[31%] bg-green-700 text-white"
                     onClick={() => handleCompletedTasks()}
                     >
                     Show Completed Tasks
