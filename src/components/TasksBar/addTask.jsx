@@ -93,7 +93,7 @@ const AddTask = () => {
     <div>
 
         <div className="flex mb-10 justify-between items-center">
-            <input type="text" className="input input-bordered w-full max-w-xs  text-white"
+            <input type="text" className="input input-bordered w-full max-w-xs bg-transparent text-white"
                 onChange={(e) => {setInpValue(e.target.value)}}
                 value={InpValue}
             />
