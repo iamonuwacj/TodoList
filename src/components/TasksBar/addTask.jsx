@@ -124,10 +124,10 @@ const AddTask = () => {
                     className="btn btn-xs sm:btn-sm  h-2 w-[31%] bg-green-700 text-white"
                     onClick={() => handleCompletedTasks()}
                     >
-                    Show Completed Tasks
+                    Completed Tasks
                 </button>
             </div>
-        <div>
+        <div className='border-2 p-4'>
             
             {
                 toggleAll && (
@@ -146,7 +146,14 @@ const AddTask = () => {
                     <h2 className='mb-6 text-3xl text-white'>{`${completedTasks.length} tasks completed`}</h2>
                 )
             }
-            
+            {
+                !toggleActive && !toggleCompleted && !toggleAll && (
+                    <div className='text-3xl mt-40 text-center mb-8'>
+                        <h2 className='mb-6'>Lets get started! <span className='size-24'>😆</span></h2>
+                        <p>Add a new task to begin</p>
+                    </div>
+                )
+            }
             <ul>
                 {
                     toggleAll && allTasks.length > 0 && allTasks.map((tasks, index) =>
