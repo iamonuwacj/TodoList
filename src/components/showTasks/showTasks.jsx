@@ -2,7 +2,7 @@
 // import React from 'react'
 
 
-const ShowTasks = ({task, onchecked, checkedTag, deleteTask}) => {
+const ShowTasks = ({task, onchecked, checkedTag, deleteTask, editTask}) => {
 
   
 
@@ -24,7 +24,7 @@ const ShowTasks = ({task, onchecked, checkedTag, deleteTask}) => {
         {
           task && (
             <div className="flex gap-5">
-              <button className="btn btn-xs sm:btn-sm h-2 w-[31%]">Edit {task}</button>
+              <button className="btn btn-xs sm:btn-sm h-2 w-[31%]" onClick={() => editTask()}>Edit {task}</button>
               <button className="btn btn-xs sm:btn-sm h-2 w-[31%]" onClick={() => deleteTask()}>Delete {task}</button>
             </div>
           )

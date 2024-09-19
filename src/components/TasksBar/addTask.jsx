@@ -8,6 +8,8 @@ const AddTask = () => {
     const [activeTasks, setActiveTasks] = useState([])
     const [completedTasks, setCompletedTasks] = useState([])
     const [toggleAll, setToggleAll] = useState(false)
+    const [edit, setEdit] = useState(false)
+    const [updatedTask, setUpdatedTask] = useState("")
     const [toggleActive, setToggleActive] = useState(true)
     const [toggleCompleted, setToggleCompleted] = useState(false)
     
@@ -16,10 +18,17 @@ const AddTask = () => {
         if (InpValue === ""){
             return false
         }
+
+        if (allTasks.includes(InpValue)){
+            setInpValue("")
+            alert("Task Already exists")
+            return false
+        }
         setAllTasks(() => [...allTasks, ...[InpValue]])
         setActiveTasks(() => [...activeTasks, ...[InpValue]])
 
         setInpValue("")
+        setEdit(false)
 
     }
 
@@ -59,7 +68,18 @@ const AddTask = () => {
         setAllTasks(allTasks.filter(task => task !== deletedTask ))
         setCompletedTasks(completedTasks.filter(tasks => tasks !== deletedTask))
         setActiveTasks(activeTasks.filter(task => task !== deletedTask))
-        alert("I got clicked")
+    }
+
+    function editTask(currentIndex){
+        let taskTobeUpdated = allTasks[currentIndex]
+        setUpdatedTask(taskTobeUpdated)
+        setInpValue(taskTobeUpdated)
+
+        setAllTasks(allTasks.filter(task => task !== taskTobeUpdated ))
+        setCompletedTasks(completedTasks.filter(tasks => tasks !== taskTobeUpdated))
+        setActiveTasks(activeTasks.filter(task => task !== taskTobeUpdated))
+
+        setEdit(true)
     }
 
 
@@ -75,7 +95,9 @@ const AddTask = () => {
                 className="btn btn-xs sm:btn-sm h-2 w-1/4"
                 onClick={(e) => handleSubmit(e)}
                 >
-                Add
+                {
+                    edit ? `Update` : `Add`
+                }
             </button>
         </div>
 
@@ -127,6 +149,7 @@ const AddTask = () => {
                             onchecked={() => checked(index)}
                             checkedTag={false}
                             deleteTask={() => deleteTask(index)}
+                            editTask={() => editTask(index)}
                         />
                     )
                 }
@@ -140,6 +163,7 @@ const AddTask = () => {
                             task={tasks}
                             checkedTag={true}
                             deleteTask={() => deleteTask(index)}
+                            editTask={() => editTask(index)}
                         />
                     )
                 }
@@ -153,6 +177,7 @@ const AddTask = () => {
                             onchecked={() => checked(index)}
                             checkedTag={true}
                             deleteTask={() => deleteTask(index)}
+                            editTask={() => editTask(index)}
                         />
                     )
                 }
