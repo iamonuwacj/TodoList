@@ -7,7 +7,10 @@ function App() {
   
 
     return (
-        <div className='flex md:w-2/3 lg:w-1/3 mx-auto flex-nowrap overflow-scroll bg-slate-600 flex-col justify-center p-3'>
+        <div className='flex md:w-2/3 lg:w-1/3 mx-auto flex-nowrap
+            overflow-scroll bg-slate-600 flex-col justify-center p-3
+            sm:h-[100vh]'
+        >
             <Header />
             <AddTask />
         </div>
